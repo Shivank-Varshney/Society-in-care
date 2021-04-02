@@ -1,0 +1,164 @@
+$primary-color: #333333;
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Nunito', sans-serif;
+}
+
+.no-gutters{
+  padding: 0 !important;
+}
+
+//////////////// Navbar start ////////////////
+.navbar{
+  position: fixed !important;
+  z-index: 3;
+  top: 0;
+  width: 100%;
+  background-color: $primary-color;
+  .img-fluid{
+    height: 60px;
+  }
+  .nav-link{
+    color: #ffffff;
+    font-weight: bold;
+    border-bottom: 2px solid transparent;
+    font-family: 'Noto Sans', sans-serif;
+    letter-spacing: 1px;
+    font-size: 13px;
+    &:hover{
+      border-bottom: 2px solid #d3cc0c;
+    }
+    .activecls{
+      color: #d3cc0c;
+    }
+  }
+}
+//////////////// Navbar end ////////////////
+
+///////////// Home page start //////////////
+#header{
+  background-image:linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url("./assets/image/banner.jpg");
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-top: 85px;
+  h1{
+    color: white;
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 60px;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 720px) {
+  #header{
+    h1{
+      font-size: 50px
+    }
+  }
+}
+@media only screen and (max-width: 400px) {
+  #header{
+    h1{
+      font-size: 40px
+    }
+  }
+}
+
+#about-us{
+  h1{
+    color: $primary-color;
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 60px;
+    padding-left: 80px;
+    border-left: 4px solid $primary-color;
+    margin-bottom: 40px;
+  }
+  p{
+    text-align: justify;
+    font-weight: bold;
+  }
+}
+@media only screen and (max-width: 400px) {
+  #about-us {
+    h1{
+      font-size: 40px
+    }
+  }
+}
+
+#mission{
+  @extend #about-us;
+}
+@media only screen and (max-width: 400px) {
+  #mission {
+    h1{
+      font-size: 40px
+    }
+  }
+}
+
+#vision{
+ @extend #about-us;
+}
+@media only screen and (max-width: 400px) {
+  #vision {
+    h1{
+      font-size: 40px
+    }
+  }
+}
+///////////// Home page end ////////////////
+
+///////////// Registration page start ////////////////
+#registration-form{
+  .registration-header{
+    background-color: $primary-color;
+    height: 50vh;
+    text-transform: uppercase;
+  }
+  .btn-register{
+    border: none;
+    background-color: $primary-color;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+}
+///////////// Registration page end /////////////////
+
+///////////// LodgeGrievance page start ////////////////
+#lodge-grievance{
+  .lodge-grievance-header{
+    background-color: $primary-color;
+    height: 50vh;
+    text-transform: uppercase;
+  }
+  .btn-lodge-grievance{
+    border: none;
+    background-color: $primary-color;
+    color: white;
+    padding: 5px 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+}
+///////////// LodgeGrievance page end /////////////////
+
+///////////// Footer start ////////////////
+#footer{
+  background-color: $primary-color;
+  color: #ffffff;
+  .copyright{
+  text-align: center;
+  }
+  .footer-icon{
+    text-decoration: none;
+    color: white;
+  }
+}
+///////////// Footer end /////////////////
