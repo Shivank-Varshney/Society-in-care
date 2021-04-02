@@ -1,11 +1,16 @@
 import React from "react";
+import {NavHashLink} from "react-router-hash-link";
 import About from "../image/aboutus.jpg";
 import Vector from "../image/vector.png";
 import Mission from "../image/mission.jpg";
 import Vision from "../image/vision.jpg";
-// import WhatsAppIcon from '@material-ui/icons/WhatsApp';
+import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 const Home = () => {
+    const openChat = () => {
+        window.open("");
+    }
+
     return(
         <>
             <header className="container-fluid mb-5" id="header">
@@ -16,13 +21,9 @@ const Home = () => {
                 </div>
             </header>
 
-            {/* <div className="container">
-                <div className="row">
-                    <div className="col whatsaap-icon d-flex justify-content-end align-item-end">
-                        <WhatsAppIcon />
-                    </div>
-                </div>
-            </div> */}
+            <div className="">
+                <NavHashLink className="footer-icon whatsaap-icon text-white" onClick={openChat} to=""><WhatsAppIcon /></NavHashLink>
+            </div>
 
             <section className="container-fluid my-5 px-md-5" id="about-us">
                 <div className="row">
