@@ -5,7 +5,6 @@ import EmailIcon from '@material-ui/icons/Email';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import TwitterIcon from '@material-ui/icons/Twitter';
-
 import LocationOnIcon from '@material-ui/icons/LocationOn';
 
 const curryear = new Date().getFullYear();
@@ -26,9 +25,9 @@ const Footer = () => {
                 <div className="row pt-3 px-sm-5 px-2">
                     <div className="col-md-4">
                         <h3 className="font-weight-bold my-3">Contact Us</h3>
-                        <p><LocationOnIcon /> Lorem ipsum dolor sit amet.</p>
-                        <p><CallIcon /> (+91) 9876543210</p>
-                        <p><EmailIcon /> info@gmail.com</p>
+                        <p><LocationOnIcon />S-2/184, Old Mahavir Nagar New Delhi (110018)</p>
+                        <p><CallIcon /> (+91) 92126 01275</p>
+                        <p><EmailIcon /> societyincare@gmail.com</p>
                     </div>
                     <div className="col-md-4 ml-md-auto my-4 mt-md-0">
                         <h3 className="font-weight-bold my-3 text-md-center">Connect us on Social Media</h3>

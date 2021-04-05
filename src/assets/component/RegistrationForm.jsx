@@ -56,12 +56,12 @@ const RegistrationForm = () =>{
                     <div className="col-md-7 px-2 mx-auto my-5">
                         <form onSubmit={formSubmit}>
                             <div className="form-group">
-                                <label htmlFor="InputName">Name</label>
+                                <label htmlFor="InputName">Name<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="name" value={data.name} placeholder="Enter your name" onChange={InputEvent} id="InputName" />
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-6">
-                                <label htmlFor="inputNumber1">Mobile No. 1</label>
+                                <label htmlFor="inputNumber1">Mobile No. 1<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="number1" value={data.number1} placeholder="Enter your mobile no." onChange={InputEvent} id="inputNumber1" />
                                 </div>
                                 <div className="form-group col-md-6">
@@ -70,20 +70,20 @@ const RegistrationForm = () =>{
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputEmail">Email</label>
+                                <label htmlFor="InputEmail">Email<span className="asterisk">*</span></label>
                                 <input type="email" className="form-control" required name="email" value={data.email} placeholder="Enter email address" onChange={InputEvent} id="InputEmail" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputAddress">Address</label>
+                                <label htmlFor="inputAddress">Address<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="address" value={data.address} placeholder="Enter your address" onChange={InputEvent} id="inputAddress" />
                             </div>
                             <div className="form-row">
                                 <div className="form-group col-md-5">
-                                <label htmlFor="inputCity">City</label>
+                                <label htmlFor="inputCity">City<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="city" value={data.city} placeholder="Enter your city" onChange={InputEvent} id="inputCity" />
                                 </div>
                                 <div className="form-group col-md-4">
-                                <label htmlFor="inputState">State</label>
+                                <label htmlFor="inputState">State<span className="asterisk">*</span></label>
                                 <select id="inputState" className="form-control" required name="state" value={data.state} placeholder="Enter your state" onChange={InputEvent}>
                                     <option>Delhi</option>
                                     <option>Mumbai</option>
@@ -92,12 +92,12 @@ const RegistrationForm = () =>{
                                 </select>
                                 </div>
                                 <div className="form-group col-md-3">
-                                <label htmlFor="inputZip">Zip Code</label>
+                                <label htmlFor="inputZip">Zip Code<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="zipcode" value={data.zipcode} placeholder="Enter your zipcode" onChange={InputEvent} id="inputZip" />
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputQualification">Qualification</label>
+                                <label htmlFor="InputQualification">Qualification<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="qualification" value={data.qualification} placeholder="Enter your qualification" onChange={InputEvent} id="InputQualification" />
                             </div>
                             <div className="form-group">
@@ -117,17 +117,17 @@ const RegistrationForm = () =>{
                                 <input type="text" className="form-control" name="instagramlink" value={data.instagramlink} placeholder="Enter your instagram link" onChange={InputEvent} id="InputInstagramprofilelink" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="FormControlReason">How would you like to contribute to Society in Care?</label>
+                                <label htmlFor="FormControlReason">How would you like to contribute to Society in Care?<span className="asterisk">*</span></label>
                                 <textarea className="form-control" id="FormControlReason" rows="3" name="reasontocontribute" value={data.reasontocontribute} onChange={InputEvent} placeholder=""></textarea>
                             </div>
                             <div className="form-row">
-                                <label htmlFor="inputHours" className="form-group">How much time you can devote to Society in Care?</label>
+                                <label htmlFor="inputHours" className="form-group">How much time you can devote to Society in Care?<span className="asterisk">*</span></label>
                                 <div className="form-group col-6">
                                 <label htmlFor="inputHours" className="sr-only">Hours</label>
-                                <input type="number" className="form-control mr-1" id="inputHours" name="hours" value={data.hours} placeholder="Enter Hours" onChange={InputEvent} />
+                                <input type="number" className="form-control mr-1" required id="inputHours" name="hours" value={data.hours} placeholder="Enter Hours" onChange={InputEvent} />
                                 </div>
                                 <div className="form-group col-6">
-                                <label htmlFor="inputState" className="sr-only">Days</label>
+                                <label htmlFor="inputState" className="sr-only">Days<span className="asterisk">*</span></label>
                                 <select size="3" id="inputState" className="form-control" required name="days" value={data.days} onChange={InputEvent}>
                                     <option>Monday</option>
                                     <option>Tuesday</option>
@@ -141,7 +141,8 @@ const RegistrationForm = () =>{
                             </div>
                             <div className="custom-file">
                                 <input type="file" className="custom-file-input" id="customFile" name="uploadfile" value={data.uploadfile} onChange={InputEvent} />
-                                <label className="custom-file-label" htmlFor="customFile">Upload your passport size photo</label>
+                                <label className="custom-file-label" htmlFor="customFile">Upload your passport size photo<span className="asterisk">*</span></label>
+                                <small id="emailHelp" class="form-text text-muted">Photo size should less than 2MB</small>
                             </div>
                             <div className="form-group mt-4">
                                 <div className="form-check">

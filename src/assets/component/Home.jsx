@@ -8,7 +8,7 @@ import WhatsAppIcon from '@material-ui/icons/WhatsApp';
 
 const Home = () => {
     const openChat = () => {
-        window.open("");
+        window.open("https://wa.me/919212601275");
     }
 
     return(
