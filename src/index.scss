@@ -24,6 +24,9 @@ $primary-color: #333333;
   .img-fluid{
     height: 60px;
   }
+  h3{
+    font-size: 32px;
+  }
   .nav-link{
     color: #ffffff;
     font-weight: bold;
@@ -34,8 +37,12 @@ $primary-color: #333333;
     &:hover{
       border-bottom: 2px solid #d3cc0c;
     }
-    .activecls{
-      color: #d3cc0c;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .navbar{
+    h3{
+      font-size: 20px;
     }
   }
 }
@@ -46,8 +53,8 @@ $primary-color: #333333;
   padding: 7px 9px 11px 9px;
   border-radius: 50px;
   position: fixed;
-  bottom: 50px;
-  right: 50px;
+  bottom: 30px;
+  right: 30px;
   z-index: 10;
   display: none;
 }

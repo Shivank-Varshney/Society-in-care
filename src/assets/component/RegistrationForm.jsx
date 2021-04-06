@@ -1,49 +1,75 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const RegistrationForm = () =>{
-    const [data, setData] = useState(
-        {
-            name : "",
-            number1 : "",
-            number2 : "",
-            email : "",
-            address : "",
-            city : "",
-            state : "",
-            zipcode : "",
-            qualification : "",
-            profession : "",
-            facebooklink : "",
-            twitterlink : "",
-            instagramlink : "",
-            reasontocontribute : "",
-            hours : "",
-            days : "",
-            uploadfile : ""
-        }
-    );
-
-    const InputEvent = (event) => {
-        const {name,value} = event.target;
-
-        setData((preVal) =>{
-            return{
-                   ...preVal,
-                   [name] : value
-            };
-        })
-    }
-
-    const formSubmit = (e) => {
+    const addtolist = () => {
+        console.log("done");
+        axios.post(
+          "http://localhost:7000/volu",
+          {
+            Name: data.name,
+            Number1: data.number1,
+            Number2: data.number2,
+            Email: data.email,
+            Address: data.address,
+            City: data.city,
+            State: data.state,
+            Zipcode: data.zipcode,
+            Qualification: data.qualification,
+            Profession: data.profession,
+            Facebooklink: data.facebooklink,
+            Twitterlink: data.twitterlink,
+            Instagramlink: data.instagramlink,
+            Reasontocontribute: data.reasontocontribute,
+            Hours: data.hours,
+            Days: data.days,
+            Uploadfile: data.uploadfile,
+          },
+          config
+        );
+      };
+    
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    
+      const [data, setData] = useState({
+        name: "",
+        number1: "",
+        number2: "",
+        email: "",
+        address: "",
+        city: "",
+        state: "",
+        zipcode: "",
+        qualification: "",
+        profession: "",
+        facebooklink: "",
+        twitterlink: "",
+        instagramlink: "",
+        reasontocontribute: "",
+        hours: "",
+        days: "",
+        uploadfile: "",
+      });
+    
+      const InputEvent = (event) => {
+        const { name, value } = event.target;
+    
+        setData((preVal) => {
+          return {
+            ...preVal,
+            [name]: value,
+          };
+        });
+      };
+    
+      const formSubmit = (e) => {
         e.preventDefault();
-        alert(`Name: ${data.name}. Number1: ${data.number1}. Number2: ${data.number2}.
-        Email: ${data.email}. Address: ${data.address}. city: ${data.city}. state: ${data.state}.
-        Zipcode: ${data.zipcode}. Qualification: ${data.qualification}. Profession: ${data.profession}. 
-        FacebookLink: ${data.facebooklink}. TwitterLink: ${data.twitterlink}. InstagramLink: ${data.instagramlink}.
-        ReasonToContribute: ${data.reasontocontribute}. Hours: ${data.hours}. Days: ${data.days}.
-        Uploadfile: ${data.uploadfile}.`)
-
-    }
+        
+      };
     return(
         <>
             <section className="container-fluid" id="registration-form">
@@ -84,12 +110,7 @@ const RegistrationForm = () =>{
                                 </div>
                                 <div className="form-group col-md-4">
                                 <label htmlFor="inputState">State<span className="asterisk">*</span></label>
-                                <select id="inputState" className="form-control" required name="state" value={data.state} placeholder="Enter your state" onChange={InputEvent}>
-                                    <option>Delhi</option>
-                                    <option>Mumbai</option>
-                                    <option>Kolkata</option>
-                                    <option>Chennai</option>
-                                </select>
+                                <input type="text" className="form-control" required name="state" value={data.state} placeholder="Enter your state" onChange={InputEvent} id="inputState" />
                                 </div>
                                 <div className="form-group col-md-3">
                                 <label htmlFor="inputZip">Zip Code<span className="asterisk">*</span></label>
@@ -129,20 +150,20 @@ const RegistrationForm = () =>{
                                 <div className="form-group col-6">
                                 <label htmlFor="inputState" className="sr-only">Days<span className="asterisk">*</span></label>
                                 <select size="3" id="inputState" className="form-control" required name="days" value={data.days} onChange={InputEvent}>
-                                    <option>Monday</option>
-                                    <option>Tuesday</option>
-                                    <option>Wednesday</option>
-                                    <option>Thursday</option>
-                                    <option>Friday</option>
-                                    <option>Saturday</option>
-                                    <option>Sunday</option>
+                                    <option value="Monday">Monday</option>
+                                    <option value="Tuesday">Tuesday</option>
+                                    <option value="Wednesday">Wednesday</option>
+                                    <option value="Thursday">Thursday</option>
+                                    <option value="Friday">Friday</option>
+                                    <option value="Saturday">Saturday</option>
+                                    <option value="Sunday">Sunday</option>
                                 </select>
                                 </div>
                             </div>
                             <div className="custom-file">
                                 <input type="file" className="custom-file-input" id="customFile" name="uploadfile" value={data.uploadfile} onChange={InputEvent} />
                                 <label className="custom-file-label" htmlFor="customFile">Upload your passport size photo<span className="asterisk">*</span></label>
-                                <small id="emailHelp" class="form-text text-muted">Photo size should less than 2MB</small>
+                                <small id="emailHelp" className="form-text text-muted">Photo size should less than 2MB</small>
                             </div>
                             <div className="form-group mt-4">
                                 <div className="form-check">
@@ -158,7 +179,7 @@ const RegistrationForm = () =>{
                                 </label>
                                 </div>
                             </div>
-                            <button type="submit" className="btn-register">Register now</button>
+                            <button type="submit" onClick={addtolist} className="btn-register">Register now</button>
                         </form>
                     </div>
                 </div>

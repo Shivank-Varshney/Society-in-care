@@ -1,37 +1,59 @@
 import React, {useState} from "react";
+import axios from "axios";
 
 const LodgeGrievance = () => {
-    const [data, setData] = useState(
-        {
-            name : "",
-            number : "",
-            email : "",
-            pincode : "",
-            department : "",
-            locality : "",
-            address : "",
-            complaint : "",
-            reasontocontribute : "",
-            uploadfile : ""        
-        }
-    );
-
-    const InputEvent = (event) => {
-        const {name,value} = event.target;
-
-        setData((preVal) =>{
-            return{
-                   ...preVal,
-                   [name] : value
-            };
-        })
-    }
-
-    const formSubmit = (e) => {
+    const addto = () => {
+        console.log("done");
+        axios.post(
+          "http://localhost:7000/prgi",
+          {
+            Name: data.name,
+            Mobileno: data.number,
+            Email: data.email,
+            Pincode: data.pincode,
+            Department: data.department,
+            Locality: data.locality,
+            Siteaddress: data.address,
+            Complaintaddress:data.complaint,
+            Reasontocontribute:data.reasontocontribute,
+          },
+          config
+        );
+      };
+    
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+    
+      const [data, setData] = useState({
+        name: "",
+        number: "",
+        email:"",
+        pincode:"",
+        department: "",
+        locality: "",
+        address: "",
+        complaint: "",
+        reasontocontribute: "",
+      });
+    
+      const InputEvent = (event) => {
+        const { name, value } = event.target;
+    
+        setData((preVal) => {
+          return {
+            ...preVal,
+            [name]: value,
+          };
+        });
+      };
+    
+      const formSubmit = (e) => {
         e.preventDefault();
-        alert(`Name: ${data.name}.`)
-
-    }
+        addto();
+      };
     return(
         <>
             <section className="container-fluid" id="lodge-grievance">
@@ -42,49 +64,49 @@ const LodgeGrievance = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-7 px-2 mx-auto my-5">
-                        <form formSubmit={formSubmit}>
+                        <form onSubmit={formSubmit}>
                             <div className="form-group">
-                                <label htmlFor="inputName">Your Name<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="name" value={data.name} onChange={InputEvent} id="inputName" />
+                                <label htmlFor="Name">Your Name<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="name" value={data.name} onChange={InputEvent} id="Name" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputMobileNumber">Mobile Number<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="number" value={data.number} onChange={InputEvent} id="inputMobileNumber" />
+                                <label htmlFor="MobileNumber">Mobile Number<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="number" value={data.number} onChange={InputEvent} id="MobileNumber" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputEmail">E-mail ID<span className="asterisk">*</span></label>
-                                <input type="email" className="form-control" required name="email" value={data.email} onChange={InputEvent} id="inputEmail" />
+                                <label htmlFor="Email">E-mail ID<span className="asterisk">*</span></label>
+                                <input type="email" className="form-control" required name="email" value={data.email} onChange={InputEvent} id="Email" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputPincode">Pincode<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="pincode" value={data.pincode} onChange={InputEvent} id="inputPincode" />
+                                <label htmlFor="Pincode">Pincode<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="pincode" value={data.pincode} onChange={InputEvent} id="Pincode" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputDepartmentConcerned">Department Concerned<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="department" value={data.department} onChange={InputEvent} id="InputDepartmentConcerned" />
+                                <label htmlFor="DepartmentConcerned">Department Concerned<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="department" value={data.department} onChange={InputEvent} id="DepartmentConcerned" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="InputLocalityGrievance">Locality of the Grievance<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="locality" value={data.locality}  onChange={InputEvent} id="InputLocalityGrievance" />
+                                <label htmlFor="LocalityGrievance">Locality of the Grievance<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="locality" value={data.locality}  onChange={InputEvent} id="LocalityGrievance" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputGrievanceAddress">Grievance Site Address<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="address" value={data.address} onChange={InputEvent} id="inputGrievanceAddress" />
+                                <label htmlFor="GrievanceAddress">Grievance Site Address<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="address" value={data.address} onChange={InputEvent} id="GrievanceAddress" />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="inputComplaintAddress">Complaint Address<span className="asterisk">*</span></label>
-                                <input type="text" className="form-control" required name="complaint" value={data.complaint} onChange={InputEvent} id="inputComplaintAddress" />
+                                <label htmlFor="ComplaintAddress">Complaint Address<span className="asterisk">*</span></label>
+                                <input type="text" className="form-control" required name="complaint" value={data.complaint} onChange={InputEvent} id="ComplaintAddress" />
                             </div>
                             <div className="form-group">
                                 <label htmlFor="FormDescription">Description<span className="asterisk">*</span></label>
                                 <textarea className="form-control" id="FormDescription" rows="3" name="reasontocontribute" value={data.reasontocontribute} onChange={InputEvent}></textarea>
-                                <small id="emailHelp" class="form-text text-muted">Max 2000 Characters. 
+                                <small className="form-text text-muted">Max 2000 Characters. 
                                 Please do not use the special character(~, `, !, $, ^, *, [, ], |, '', --) for entry</small>
                             </div>
                             <div className="custom-file">
                                 <input type="file" className="custom-file-input" id="customFile" name="uploadfile" value={data.uploadfile} onChange={InputEvent} />
                                 <label className="custom-file-label" htmlFor="customFile">Upload Document, if required</label>
-                                <small id="emailHelp" class="form-text text-muted">Photo size should less than 2MB</small>
+                                <small className="form-text text-muted">Photo size should less than 2MB</small>
                             </div>
                             <button type="submit" className="btn-lodge-grievance">Submit</button>
                         </form>
