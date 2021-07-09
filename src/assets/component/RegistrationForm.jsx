@@ -2,40 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const RegistrationForm = () =>{
-    const addtolist = () => {
-        console.log("done");
-        axios.post(
-          "http://localhost:7000/volu",
-          {
-            Name: data.name,
-            Number1: data.number1,
-            Number2: data.number2,
-            Email: data.email,
-            Address: data.address,
-            City: data.city,
-            State: data.state,
-            Zipcode: data.zipcode,
-            Qualification: data.qualification,
-            Profession: data.profession,
-            Facebooklink: data.facebooklink,
-            Twitterlink: data.twitterlink,
-            Instagramlink: data.instagramlink,
-            Reasontocontribute: data.reasontocontribute,
-            Hours: data.hours,
-            Days: data.days,
-            Uploadfile: data.uploadfile,
-          },
-          config
-        );
-      };
-    
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-    
-      const [data, setData] = useState({
+
+    const [data, setData] = useState({
         name: "",
         number1: "",
         number2: "",
@@ -52,23 +20,63 @@ const RegistrationForm = () =>{
         reasontocontribute: "",
         hours: "",
         days: "",
-        uploadfile: "",
+        image: "",
       });
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+    const addtolist = async () => {
+        // console.log("uim",data.image)
+        // console.log(data);
+        var formData = new FormData();
+        formData.append('Name', data.name);
+        formData.append('Number1', data.number1);
+        formData.append('Number2',data.number2);
+        formData.append('Email', data.email);
+        formData.append('Address', data.address);
+        formData.append('City', data.city);
+        formData.append('State', data.state);
+        formData.append('Zipcode', data.zipcode);
+        formData.append('Qualification', data.qualification);
+        formData.append('Profession', data.profession);
+        formData.append('Facebooklink', data.facebooklink);
+        formData.append('Twitterlink', data.twitterlink);
+        formData.append('Instagramlink', data.instagramlink);
+        formData.append('Reasontocontribute', data.reasontocontribute);
+        formData.append('Hours', data.hours);
+        formData.append('Days', data.days);
+        formData.append('image', data.image);
+        const resp = axios.post("http://localhost:7000/volu",formData);
+      };
     
+    
+    
+      
       const InputEvent = (event) => {
         const { name, value } = event.target;
     
-        setData((preVal) => {
-          return {
-            ...preVal,
-            [name]: value,
-          };
-        });
+        // setData((preVal) => {
+        //   return {
+        //     ...preVal,
+        //     [name]: value,
+        //   };
+        // });
+        setData({...data,[name]:value});
       };
-    
+
+     const handlefile=(e)=>{
+      console.log('img upload');
+      console.log(e.target.files[0]);
+      setData({ ...data, [e.target.name]: e.target.files[0]})
+
+     }
       const formSubmit = (e) => {
         e.preventDefault();
-        
+        //addtolist(data);
       };
     return(
         <>
@@ -80,7 +88,7 @@ const RegistrationForm = () =>{
                 </div>
                 <div className="row">
                     <div className="col-md-7 px-2 mx-auto my-5">
-                        <form onSubmit={formSubmit}>
+                        <form onSubmit={formSubmit} encType="multipart/form-data">
                             <div className="form-group">
                                 <label htmlFor="InputName">Name<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="name" value={data.name} placeholder="Enter your name" onChange={InputEvent} id="InputName" />
@@ -139,7 +147,7 @@ const RegistrationForm = () =>{
                             </div>
                             <div className="form-group">
                                 <label htmlFor="FormControlReason">How would you like to contribute to Society in Care?<span className="asterisk">*</span></label>
-                                <textarea className="form-control" id="FormControlReason" rows="3" name="reasontocontribute" value={data.reasontocontribute} onChange={InputEvent} placeholder=""></textarea>
+                                <textarea className="form-control" id="FormControlReason" maxLength="1000" rows="3" name="reasontocontribute" value={data.reasontocontribute} onChange={InputEvent} placeholder=""></textarea>
                             </div>
                             <div className="form-row">
                                 <label htmlFor="inputHours" className="form-group">How much time you can devote to Society in Care?<span className="asterisk">*</span></label>
@@ -161,7 +169,7 @@ const RegistrationForm = () =>{
                                 </div>
                             </div>
                             <div className="custom-file">
-                                <input type="file" className="custom-file-input" id="customFile" name="uploadfile" value={data.uploadfile} onChange={InputEvent} />
+                                <input type="file" className="custom-file-input" id="customFile" name="image"  onChange={handlefile} />
                                 <label className="custom-file-label" htmlFor="customFile">Upload your passport size photo<span className="asterisk">*</span></label>
                                 <small id="emailHelp" className="form-text text-muted">Photo size should less than 2MB</small>
                             </div>

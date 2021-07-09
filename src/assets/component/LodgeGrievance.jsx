@@ -2,58 +2,86 @@ import React, {useState} from "react";
 import axios from "axios";
 
 const LodgeGrievance = () => {
-    const addto = () => {
+    const [Image,setImage] = useState({});
+  
+   const [data, setData] = useState({
+    name: "",
+    number: "",
+    email:"",
+    pincode:"",
+    department: "",
+    locality: "",
+    address: "",
+    complaint: "",
+    reasontocontribute: "",
+    image:"",
+  });
+     
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+
+    const addto = async () => {
         console.log("done");
-        axios.post(
-          "http://localhost:7000/prgi",
-          {
-            Name: data.name,
-            Mobileno: data.number,
-            Email: data.email,
-            Pincode: data.pincode,
-            Department: data.department,
-            Locality: data.locality,
-            Siteaddress: data.address,
-            Complaintaddress:data.complaint,
-            Reasontocontribute:data.reasontocontribute,
-          },
-          config
-        );
+        //console.log(data);
+        var formdata = new FormData();
+        formdata.append('Name',data.name );
+        formdata.append('Mobileno',data.number );
+        formdata.append('Email',data.email );
+        formdata.append('Pincode',data.pincode );
+        formdata.append('Department',data.department );
+        formdata.append('Locality',data.locality );
+        formdata.append('Siteaddress',data.address );
+        formdata.append('Complaintaddress',data.complaint );
+        formdata.append('Reasontocontribute',data.reasontocontribute );
+        formdata.append('image',data.image );
+        //console.log(formdata);
+        
+        const resp = axios.post("http://localhost:7000/prgi",formdata);
+        //console.log(resp);
+        console.log()
       };
+     
+     
     
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-    
-      const [data, setData] = useState({
-        name: "",
-        number: "",
-        email:"",
-        pincode:"",
-        department: "",
-        locality: "",
-        address: "",
-        complaint: "",
-        reasontocontribute: "",
-      });
+      
     
       const InputEvent = (event) => {
         const { name, value } = event.target;
-    
-        setData((preVal) => {
-          return {
-            ...preVal,
-            [name]: value,
-          };
-        });
+
+        setData({...data,[name]:value});
       };
-    
+
+     const handlefile=(e)=>{
+      console.log('img upload');
+      console.log(e.target.files);
+      setData({ ...data, [e.target.name]: e.target.files[0]})
+
+     }
       const formSubmit = (e) => {
         e.preventDefault();
-        addto();
+        //addto(data);
+    
       };
+      
+      const fileonchange = (event) =>{
+          setImage(event.target.files[0]);
+      }
+      const sendImage = (event) =>{
+          let formData = new FormData();
+
+        formData.append('avtar',Image)
+
+          fetch('http://localhost:7000/uploadfile',{
+              method:'post',
+              body:formData,
+          }).then((res) => res.text())
+            .then((resBody)=>{
+              console.log(resBody)
+          })
+      }
     return(
         <>
             <section className="container-fluid" id="lodge-grievance">
@@ -64,7 +92,7 @@ const LodgeGrievance = () => {
                 </div>
                 <div className="row">
                     <div className="col-md-7 px-2 mx-auto my-5">
-                        <form onSubmit={formSubmit}>
+                        <form onSubmit={formSubmit}  encType="multipart/form-data">
                             <div className="form-group">
                                 <label htmlFor="Name">Your Name<span className="asterisk">*</span></label>
                                 <input type="text" className="form-control" required name="name" value={data.name} onChange={InputEvent} id="Name" />
@@ -99,16 +127,16 @@ const LodgeGrievance = () => {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="FormDescription">Description<span className="asterisk">*</span></label>
-                                <textarea className="form-control" id="FormDescription" rows="3" name="reasontocontribute" value={data.reasontocontribute} onChange={InputEvent}></textarea>
+                                <textarea className="form-control" id="FormDescription" maxLength='1000' rows="3" name="reasontocontribute" value={data.reasontocontribute} onChange={InputEvent}></textarea>
                                 <small className="form-text text-muted">Max 2000 Characters. 
                                 Please do not use the special character(~, `, !, $, ^, *, [, ], |, '', --) for entry</small>
                             </div>
                             <div className="custom-file">
-                                <input type="file" className="custom-file-input" id="customFile" name="uploadfile" value={data.uploadfile} onChange={InputEvent} />
+                                <input  type="file" className="custom-file-input" id="customFile" name="image" multiple onChange={handlefile} />
                                 <label className="custom-file-label" htmlFor="customFile">Upload Document, if required</label>
                                 <small className="form-text text-muted">Photo size should less than 2MB</small>
                             </div>
-                            <button type="submit" className="btn-lodge-grievance">Submit</button>
+                            <button type="submit" className="btn-lodge-grievance" onClick={addto} >Submit</button>
                         </form>
                     </div>
                 </div>

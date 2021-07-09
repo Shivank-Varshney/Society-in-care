@@ -26,7 +26,7 @@ const Footer = () => {
                     <div className="col-md-4">
                         <h3 className="font-weight-bold my-3">Contact Us</h3>
                         <p><LocationOnIcon />S-2/184, Old Mahavir Nagar New Delhi (110018)</p>
-                        <p><CallIcon /> (+91) 92126 01275</p>
+                        <p><CallIcon /> (+91) 93156 87260</p>
                         <p><EmailIcon /> societyincare@gmail.com</p>
                     </div>
                     <div className="col-md-4 ml-md-auto my-4 mt-md-0">
